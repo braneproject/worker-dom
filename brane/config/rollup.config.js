@@ -1,10 +1,9 @@
 import {
   babelPlugin,
-  removeWorkerWhitespace,
   replacePlugin,
 } from '../../config/rollup.plugins.js';
 
-const mainThreadConfig =   {
+const mainThreadConfig = {
   input: 'output/main-thread/index.brane.js',
   output: {
     file: 'dist/brane-debug/main.mjs',
