@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div src="code.js" id="upgrade-me" data-shadow-dom="open"></div>
+  <script type="module">
+    import {upgradeElement} from '/dist/brane-debug/main.mjs';
+    upgradeElement(document.getElementById('upgrade-me'), '/dist/brane-debug/worker/worker.mjs');
+  </script>
+</body>
+</html>
