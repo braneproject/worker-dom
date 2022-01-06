@@ -1,5 +1,5 @@
 {
-  "name": "@ampproject/worker-dom",
+  "name": "@braneproject/worker-dom",
   "version": "0.32.1",
   "description": "A facsimile of a modern DOM implementation intended to run in a Web Worker.",
   "main": "dist/main",
@@ -13,7 +13,6 @@
   "engines": {
     "node": ">=10.14"
   },
-  "author": "The AMP HTML Authors",
   "license": "Apache-2.0",
   "scripts": {
     "tsc:worker": "tsc -p src/worker-thread/tsconfig.json",
@@ -34,7 +33,10 @@
     "presize": "npm-run-all build",
     "size": "filesize",
     "release": "HUSKY_SKIP_HOOKS=1 np --no-2fa",
-    "prepublishOnly": "npm-run-all clean build"
+    "prepublishOnly": "npm-run-all clean build",
+    "prebrane:build": "npm-run-all --parallel tsc:worker tsc:main",
+    "brane:build": "rollup --config brane/config/rollup.config.js",
+    "brane:demo": "node -r esm brane/demo/server.js"
   },
   "devDependencies": {
     "@ampproject/filesize": "4.3.0",
