@@ -138,15 +138,17 @@ const transformer = new Webidl2js({
   }
 });
 
+const baseDir = path.resolve(__dirname, '..');
+
 function addDir(idl, impl) {
-  const idlResolved = path.resolve(__dirname, idl);
-  const implResolved = path.resolve(__dirname, impl);
+  const idlResolved = path.resolve(baseDir, idl);
+  const implResolved = path.resolve(baseDir, impl);
   transformer.addSource(idlResolved, implResolved);
 }
 
 addDir("idl", "impl");
 
-const outputDir = path.resolve(__dirname, "../src/worker-thread/dom/generated/");
+const outputDir = path.resolve(baseDir, "../src/worker-thread/dom/generated/");
 
 // Clean up any old stuff lying around.
 rimraf.sync(outputDir);
