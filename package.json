@@ -36,7 +36,8 @@
     "prepublishOnly": "npm-run-all clean build",
     "prebrane:build": "npm-run-all --parallel tsc:worker tsc:main",
     "brane:build": "rollup --config brane/config/rollup.config.js",
-    "brane:demo": "node -r esm brane/demo/server.js"
+    "brane:demo": "node -r esm brane/demo/server.js",
+    "brane:idl": "node brane/convert-idl.js"
   },
   "devDependencies": {
     "@ampproject/filesize": "4.3.0",
@@ -73,7 +74,8 @@
     "sinon": "12.0.1",
     "sirv": "1.0.19",
     "tslint": "6.1.3",
-    "typescript": "4.5.4"
+    "typescript": "4.5.4",
+    "webidl2js": "17.0.0"
   },
   "lint-staged": {
     "*.{js,ts}": [
