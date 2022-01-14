@@ -55,6 +55,7 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "benchmark": "2.1.4",
     "cross-env": "7.0.3",
+    "diff": "5.0.0",
     "esm": "3.2.25",
     "husky": "7.0.4",
     "jsdom": "19.0.0",
