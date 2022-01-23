@@ -1,6 +1,6 @@
 {
   "name": "@braneproject/worker-dom",
-  "version": "0.32.1",
+  "version": "0.1.0",
   "description": "A facsimile of a modern DOM implementation intended to run in a Web Worker.",
   "main": "dist/main",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ampproject/worker-dom.git"
+    "url": "https://github.com/braneproject/worker-dom.git"
   },
   "engines": {
     "node": ">=10.14"
@@ -33,11 +33,11 @@
     "presize": "npm-run-all build",
     "size": "filesize",
     "release": "HUSKY_SKIP_HOOKS=1 np --no-2fa",
-    "prepublishOnly": "npm-run-all clean build",
     "prebrane:build": "npm-run-all --parallel tsc:worker tsc:main",
+    "brane:idl": "node brane/scripts/convert-idl.cjs",
     "brane:build": "rollup --config brane/config/rollup.config.js",
     "brane:demo": "node -r esm brane/demo/server.js",
-    "brane:idl": "node brane/scripts/convert-idl.cjs"
+    "prepublishOnly": "npm-run-all clean build brane:build"
   },
   "devDependencies": {
     "@ampproject/filesize": "4.3.0",
