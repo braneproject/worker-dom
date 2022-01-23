@@ -20,24 +20,20 @@
     "tsc:tests": "tsc -p src/test/tsconfig.json",
     "tsc:tests-main": "tsc -p src/test/main-thread/tsconfig.json",
     "clean": "rimraf output dist",
-    "pretest": "npm-run-all --parallel tsc:*",
-    "test": "ava -v",
-    "pre~rollup": "npm-run-all --parallel tsc:worker tsc:main",
-    "~rollup": "rollup --config config/rollup.config.js",
+    "test": "run-p \"tsc:*\" && ava -v",
+    "~rollup": "run-p tsc:worker tsc:main && rollup --config config/rollup.config.js",
     "lint:worker": "tslint -c config/tslint.json -p src/worker-thread/",
     "lint:main": "tslint -c config/tslint.json -p src/main-thread/",
     "lint": "npm-run-all --parallel lint:*",
-    "predemo": "cross-env DEBUG_BUNDLE=true npm-run-all ~rollup",
-    "demo": "node -r esm demo/server.js",
-    "build": "cross-env MINIFY_BUNDLE=true npm-run-all ~rollup",
+    "demo": "DEBUG_BUNDLE=true npm-run-all ~rollup && node -r esm demo/server.js",
+    "build": "MINIFY_BUNDLE=true npm-run-all ~rollup",
     "presize": "npm-run-all build",
     "size": "filesize",
     "release": "HUSKY_SKIP_HOOKS=1 np --no-2fa",
-    "prebrane:build": "npm-run-all --parallel tsc:worker tsc:main",
-    "brane:idl": "node brane/scripts/convert-idl.cjs",
+    "brane:idl": "run-p tsc:worker tsc:main && node brane/scripts/convert-idl.cjs",
     "brane:build": "rollup --config brane/config/rollup.config.js",
     "brane:demo": "node -r esm brane/demo/server.js",
-    "prepublishOnly": "npm-run-all clean build brane:build"
+    "prepack": "npm-run-all clean build brane:build"
   },
   "devDependencies": {
     "@ampproject/filesize": "4.3.0",
@@ -55,7 +51,6 @@
     "babel-plugin-minify-replace": "0.5.0",
     "babel-plugin-transform-remove-console": "6.9.4",
     "benchmark": "2.1.4",
-    "cross-env": "7.0.3",
     "diff": "5.0.0",
     "esm": "3.2.25",
     "husky": "7.0.4",
@@ -133,5 +128,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }

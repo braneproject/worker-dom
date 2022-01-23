@@ -1,1 +1,4 @@
 src/worker-thread/dom/generated/*    linguist-generated
+
+.yarn/**                             linguist-vendored
+.yarn/release/*                      binary linguist-vendored
